@@ -1,0 +1,235 @@
+body {
+    font-family: 'Edu VIC WA NT Beginner', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('/static/SL-020622-4930-50.jpg') no-repeat center center fixed, rgb(0, 0, 0);
+    background-size: cover;
+    height: 100vh;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+::-webkit-scrollbar {
+    width: 1px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff5722;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #e64a19;
+}
+
+.container {
+    width: 70%;
+    max-width: 2000px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    border: 3px solid #ff5722;
+    overflow: hidden;
+}
+
+.back-button {
+    display: block;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.back-button:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+}
+
+.back-button:active {
+    background-color: #d84315;
+}
+
+h1 {
+    text-align: center;
+    color: #ff5722;
+    margin-bottom: 20px;
+    font-family: 'Edu VIC WA NT Beginner', sans-serif;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 87, 34, 0.8);
+}
+
+fieldset {
+    border: 2px solid #ff5722;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 10px;
+    color: #ff5722;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(255, 87, 34, 0.7);
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #fff;
+    font-family: 'Edu VIC WA NT Beginner', sans-serif;
+}
+
+input[type="number"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ff5722;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    background: #333;
+    color: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: 'Edu VIC WA NT Beginner', Arial, sans-serif;
+}
+
+input[type="number"]:focus, select:focus {
+    border-color: #ffab00;
+    box-shadow: 0 0 10px rgba(255, 171, 0, 0.5);
+    outline: none;
+}
+
+input[type="submit"] {
+    background-color: #ff5722;
+    color: white;
+    border: 2px solid #ff5722;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Edu VIC WA NT Beginner', sans-serif;
+}
+
+input[type="submit"]:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255,255,255,0.3);
+    transition: transform 0.3s;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+input[type="submit"]:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+}
+
+input[type="submit"]:hover:before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    max-width: 600px;
+    z-index: 1000;
+}
+
+.popup.active {
+    display: block;
+}
+
+.popup h2 {
+    color: #ff5722;
+    margin-top: 0;
+}
+
+.popup .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.popup .close:hover {
+    background: #e64a19;
+}
+
+.popup .content {
+    text-align: center;
+}
+
+.popup .highlight {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ff5722;
+    text-shadow: 0 0 10px rgba(255, 87, 34, 0.8);
+}
+
+.popup .approved {
+    color: #4caf50;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 2em;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
+}
+
+.popup .rejected {
+    color: #f44336;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 2em;
+    text-shadow: 0 0 10px rgba(244, 67, 54, 0.8);
+}

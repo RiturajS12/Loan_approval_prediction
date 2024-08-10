@@ -1,0 +1,130 @@
+body {
+    font-family: 'Edu VIC WA NT Beginner', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('/static/SL-020622-4930-50.jpg') no-repeat center center fixed rgb(0, 0, 0);
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+.container {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.496), rgba(0, 0, 0, 0.6));
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0);
+    max-width: 700px;
+    margin: auto;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+h1 {
+    font-family: 'Edu VIC WA NT Beginner', sans-serif;
+    color: #ff5722;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    transition: color 0.3s;
+}
+
+h1:hover {
+    color: #e64a19;
+}
+
+p {
+    margin: 20px 0;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #e0e0e0;
+    transition: color 0.3s;
+    font-weight: 400;
+}
+
+p:hover {
+    color: #ffffff;
+}
+
+img.logo {
+    width: 120px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgb(255, 82, 25);
+    transition: transform 0.3s;
+    position: relative;
+}
+
+img.logo:hover {
+    transform: scale(1.1);
+}
+
+.money {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.money.active {
+    opacity: 1;
+}
+
+.money img {
+    position: absolute;
+    width: 30px;
+    height: auto;
+    animation: shower 1s ease-in-out infinite;
+}
+
+@keyframes shower {
+    0% {
+        transform: translateY(-100px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+.button {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+    font-family: 'Edu VIC WA NT Beginner', sans-serif;
+    font-weight: 700;
+}
+
+.button:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.button:active {
+    background-color: #d84315;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}

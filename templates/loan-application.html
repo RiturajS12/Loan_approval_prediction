@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Poppins:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/form.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Loan Application Form</h1>
+        <form id="loan-form" method="post" action="/predict">
+            <fieldset>
+                <legend>Applicant Details</legend>
+                <label for="no_of_dependents">Number of Dependents:</label>
+                <input type="number" id="no_of_dependents" name="no_of_dependents" min="0" required>
+
+                <label for="income">Annual Income (in ₹):</label>
+                <input type="number" id="income" name="income_annum" min="0" step="any" required>
+
+                <label for="loan_amount">Loan Amount Requested (in ₹):</label>
+                <input type="number" id="loan_amount" name="loan_amount" min="0" step="any" required>
+
+                <label for="loan_term">Loan Term (in months):</label>
+                <input type="number" id="loan_term" name="loan_term" min="0" required>
+
+                <label for="cibil_score">CIBIL Score (300-900):</label>
+                <input type="number" id="cibil_score" name="cibil_score" min="300" max="900" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Asset Details</legend>
+                <label for="residential_assets_value">Residential Assets Value (in ₹):</label>
+                <input type="number" id="residential_assets_value" name="residential_assets_value" min="0" step="any" required>
+
+                <label for="commercial_assets_value">Commercial Assets Value (in ₹):</label>
+                <input type="number" id="commercial_assets_value" name="commercial_assets_value" min="0" step="any" required>
+
+                <label for="luxury_assets_value">Luxury Assets Value (in ₹):</label>
+                <input type="number" id="luxury_assets_value" name="luxury_assets_value" min="0" step="any" required>
+
+                <label for="bank_asset_value">Bank Asset Value (in ₹):</label>
+                <input type="number" id="bank_asset_value" name="bank_asset_value" min="0" step="any" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Additional Information</legend>
+                <label for="education_NotGraduate">Education - Not Graduate:</label>
+                <select id="education_NotGraduate" name="education_NotGraduate" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <label for="self_employed_Yes">Self-Employed:</label>
+                <select id="self_employed_Yes" name="self_employed_Yes" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </fieldset>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="popup" class="popup">
+        <button id="close-popup" class="close">&times;</button>
+        <div id="popup-content" class="content"></div>
+    </div>
+</body>
+<script>
+    function validateForm() {
+        const income = parseFloat(document.getElementById('income').value);
+        const loanAmount = parseFloat(document.getElementById('loan_amount').value);
+        const cibilScore = parseInt(document.getElementById('cibil_score').value);
+
+        if (cibilScore < 300 || cibilScore > 900) {
+            alert('CIBIL Score must be between 300 and 900.');
+            return false;
+        }
+        return true;
+    }
+
+    function showPopup(income, loanAmount, predictionText) {
+        const popupContent = `
+            <h2>Application Summary</h2>
+            <p><strong>Annual Income:</strong> <span class="highlight">${income}</span></p>
+            <p><strong>Loan Amount Requested:</strong> <span class="highlight">${loanAmount}</span></p>
+            <p class="${predictionText.toLowerCase()}">${predictionText}</p>
+            `;
+        document.getElementById('popup-content').innerHTML = popupContent;
+        document.getElementById('popup').classList.add('active');
+    }
+
+    function closePopup() {
+        document.getElementById('popup').classList.remove('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('loan-form').onsubmit = async function (e) {
+            e.preventDefault();
+            if (!validateForm()) return;
+
+            const formData = new FormData(this);
+            const response = await fetch('/predict', {
+                method: 'POST',
+                body: formData
+            });
+            const predictionText = await response.text();
+
+            const income = document.getElementById('income').value;
+            const loanAmount = document.getElementById('loan_amount').value;
+
+            showPopup(income, loanAmount, predictionText);
+        };
+
+        document.getElementById('close-popup').onclick = closePopup;
+    });
+</script>
+</html>

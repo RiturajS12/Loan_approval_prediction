@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <img src="/static/bank_15917405.png" alt="Company Logo" class="logo" id="logo">
+        <div class="money" id="money-container"></div>
+        <h1>Welcome to Our Loan Application Portal</h1>
+        <p>Our portal provides a convenient way for you to apply for a loan. By filling out the application form, you will be able to provide us with your financial details. Once you submit the form, you will receive a prediction on your loan eligibility based on the information provided.</p>
+        <p>Click the button below to get started with your loan application. It's easy and fast!</p>
+        <a href="/form" class="button">Check Now</a>
+    </div>
+    <script>
+        const logo = document.getElementById('logo');
+        const moneyContainer = document.getElementById('money-container');
+
+        function createMoney() {
+            for (let i = 0; i < 20; i++) {
+                const money = document.createElement('img');
+                money.src = '/static/cash_5705455.png';
+                money.style.left = `${Math.random() * 100}%`;
+                money.style.animationDuration = `${Math.random() * 1 + 1}s`;
+                money.style.animationDelay = `${Math.random() * 2}s`;
+                moneyContainer.appendChild(money);
+
+                money.addEventListener('animationend', () => {
+                    money.remove();
+                });
+            }
+        }
+
+        logo.addEventListener('mouseenter', () => {
+            moneyContainer.classList.add('active');
+            createMoney();
+        });
+
+        logo.addEventListener('mouseleave', () => {
+            moneyContainer.classList.remove('active');
+            moneyContainer.innerHTML = ''; // Clear all money images
+        });
+    </script>
+</body>
+</html>
